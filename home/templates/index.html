@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-4">
+        <h4 class="alert alert-info mt-2">Add Todo</h4>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="btn btn-success" type="submit" value="Add Todo">
+        </form>
+    </div>
+
+    <div class="col-sm-8">
+        <h4 class="alert alert-info mt-2">Your Todos</h4>
+        {% if data %}
+        {% for items in data %}
+        <div class="card my-3">
+            <div class="card-body">
+                <h5 class="card-title">{{items.title}}</h5>
+                <p class="card-text">{{items.description}}</p>
+                <p class="card-text">{{items.date}}</p>
+
+                <a href="{% url 'updatetodo' items.id %}" class="btn btn-sm btn-warning">Edit</a>
+
+                <form action="{% url 'deletetodo' items.id %}" class="d-inline" method="post">
+                    {% csrf_token %}
+                    <input class="btn btn-sm btn-danger" type="submit" value="Delete">
+                </form>
+                
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h4 class="alert alert-warning mt-3">No Todos</h4>
+        {% endif %}
+    </div>
+
+    {% endblock body %}
+</div>
