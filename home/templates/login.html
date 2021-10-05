@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+{% block style %}
+a{
+   text-decoration: none;
+}
+{% endblock style %}
+
+{% block body %}
+<div class="container">
+    <h3 class="container col-sm-8 text-center alert alert-warning mt-4">Login Form</h3>
+    <div class="container col-sm-6">
+
+    <form action="" method="post" novalidate>
+    {% csrf_token %}
+
+    <!-- Error Fields of Form -->
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p class="er">{{error}}</p>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Form Fields -->
+    {% for fm in form %}
+    <b> {{fm.label_tag}} </b>
+    <p> {{fm}} </p>
+    <p> {{fm.errors|striptags}} </p>
+    {% endfor %}
+    <input class="btn btn-primary" type="submit" value="Login">
+    </form>
+
+    <p class="my-3">Don't Have an Account ? Please
+    <a href="{% url 'signup' %}">Create Account</a>
+    </p>
+    </div>
+</div>
+{% endblock body %}

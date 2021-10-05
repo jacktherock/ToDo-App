@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand"><i class="fas fa-th-list"></i>
+     MyToDo's
+    <span class="text-warning mx-5">
+    <i class="fas fa-user"></i> 
+    {{request.user}}
+    </span> 
+    </a>
+    <form class="d-flex">
+    <a class="btn btn-outline-success mx-2" href="{% url 'changepass' %}">Change Password
+     <i class="fas fa-key"></i></a>
+    <a class="btn btn-outline-success mx-2" href="{% url 'logout' %}">Logout
+     <i class="fas fa-sign-out-alt"></i></a>
+    </form>
+  </div>
+</nav>
