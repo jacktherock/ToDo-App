@@ -6,7 +6,7 @@
 {% include 'navbar.html' %}
 
 <div class="container">
-    <h3 class="text-center alert alert-danger mt-4">My ToDo's</h3>
+    <h3 class="text-center alert alert-primary mt-4">My ToDo's</h3>
 
  
 <div class="row">
@@ -28,20 +28,23 @@
         {% for items in data %}
         <div class="card my-3">
             <div class="card-body">
-                <h5 class="card-title">{{items.title}}</h5>
-                <p class="card-text">{{items.description}}</p>
-                <p class="card-text">{{items.date}}</p>
+                
+                <form action="{% url 'deletetodo' items.id %}" class="float-end d-inline mx-2" method="post">
+                    {% csrf_token %}
+                    <button  type="submit" class="btn btn-sm btn-danger" >
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
 
-                <a href="{% url 'updatetodo' items.id %}" class="btn btn-sm btn-warning">
+                <a href="{% url 'updatetodo' items.id %}" class="float-end btn btn-sm btn-warning">
                 <i class="fas fa-edit"></i>
                 </a>
 
-                <form action="{% url 'deletetodo' items.id %}" class="d-inline" method="post">
-                    {% csrf_token %}
-                    <button  type="submit" class="btn btn-sm btn-danger" >
-                    <i class="fas fa-trash-alt"></i>
-                    </button>
-                </form>
+                <h5 class="card-title">{{items.title}}</h5>
+                <p class="card-text">{{items.description}}</p>
+                <p class="card-text">{{items.date}}</p>
+                
+
                 
             </div>
         </div>
