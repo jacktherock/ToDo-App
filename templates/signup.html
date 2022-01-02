@@ -15,9 +15,11 @@ a{
     <form action="" method="post" novalidate>
     {% csrf_token %}
     {% for fm in form %}
-    <b> {{fm.label_tag}} </b>
+    <div> 
+        {{fm.label_tag}} 
+        <small class="fw-bold text-danger"> {{fm.errors|striptags}} </small>
+    </div>
     <p> {{fm}} </p>
-    <p> {{fm.errors|striptags}} </p>
     {% endfor %}
     <input class="btn btn-primary" type="submit" value="Create Account">
     </form>

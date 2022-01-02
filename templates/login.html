@@ -18,15 +18,17 @@ a{
     <!-- Error Fields of Form -->
     {% if form.non_field_errors %}
     {% for error in form.non_field_errors %}
-    <p class="er">{{error}}</p>
+    <small class="fw-bold alert alert-danger">{{error}}</small>
     {% endfor %}
     {% endif %}
 
     <!-- Form Fields -->
     {% for fm in form %}
-    <b> {{fm.label_tag}} </b>
+    <div> 
+        {{fm.label_tag}} 
+        <small class="fw-bold text-danger"> {{fm.errors|striptags}} </small>
+    </div>
     <p> {{fm}} </p>
-    <p> {{fm.errors|striptags}} </p>
     {% endfor %}
     <input class="btn btn-primary" type="submit" value="Login">
     </form>

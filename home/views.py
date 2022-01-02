@@ -1,5 +1,5 @@
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import AddTodoForm, ChangePasswordForm, LoginForm, SignupForm
 from .models import addTodo
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -33,6 +33,7 @@ def updateTodo(request, id):
         td = AddTodoForm(request.POST, instance=pi)
         if td.is_valid():
             td.save()
+            return HttpResponseRedirect('/')
     else:
         pi = addTodo.objects.get(pk=id)
         td = AddTodoForm(instance=pi)
